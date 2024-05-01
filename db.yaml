@@ -4,7 +4,7 @@
   vars: 
     login_host: 54.221.111.181
   tasks: 
-    name: installing mysql server
+  - name: installing mysql server
     ansible.builtin.dnf:
       name: mysql-server
       state: latest
