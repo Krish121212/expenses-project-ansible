@@ -15,6 +15,12 @@
       state: started
       enabled: yes
   
+  - name: Install bottle python package
+    ansible.builtin.pip:
+      name: PyMySql
+      executable: pip3.9
+
+
   - name: connection for mysql DB
     community.mysql.mysql_info:
       login_user: root

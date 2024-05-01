@@ -1,0 +1,9 @@
+DB
+
+for dependacies instalation - npm install
+here we are using pythn based ansible. so we need to instal depedancies for the 
+python based mysql --- pip - pymysql
+
+python based any module instalation in ansible = ansible.builtin.pip
+
+
