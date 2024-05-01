@@ -2,7 +2,7 @@
   hosts: db
   become: yes
   vars: 
-    login_host: 174.129.71.81
+    login_host: 54.221.111.181
   tasks: 
     name: installing mysql server
     ansible.builtin.dnf:
@@ -21,8 +21,8 @@
       login_password: Krish@1212
       login_host: "{{ login_host }}"
       filter: version
-      ignore_errors: yes
-      register: output
+        ignore_errors: yes
+        register: output
 
   - name: connection output
     ansible.builtin.debug:
