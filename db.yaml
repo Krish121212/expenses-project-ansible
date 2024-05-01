@@ -9,21 +9,21 @@
       name: mysql-server
       state: latest
   
-  - name: starting mysql service
-    ansible.builtin.service:
-      name: mysqld
-      state: started
-      enabled: yes
+- name: starting mysql service
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: yes
   
-  - name: connection for mysql DB
-    community.mysql.mysql_info:
-      login_user: root
-      login_password: Krish@1212
-      login_host: "{{ login_host }}"
-      filter: version
-        ignore_errors: yes
-        register: output
+- name: connection for mysql DB
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: Krish@1212
+    login_host: "{{ login_host }}"
+    filter: version
+  ignore_errors: yes
+  register: output
 
-  - name: connection output
-    ansible.builtin.debug:
-      msg: "output: {{ output }}"
+- name: connection output
+  ansible.builtin.debug:
+    msg: "output: {{ output }}"
