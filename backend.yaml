@@ -1,7 +1,9 @@
 - name: configure backend server
   hosts: backend
   become: yes
-  
+  vars:
+    login_host: 44.223.60.237
+    login_password: Krish@1212
   
   tasks:
   - name: disable default nodejs
@@ -10,10 +12,13 @@
   - name: enabling nodejs:20
     ansible.builtin.command: dnf module enable nodejs:20 -y
 
-  - name: installing nodejs
+  - name: installing packages
     ansible.builtin.dnf:
-      name: nodejs
+      name: "{{ item }}"
       state: present
+    loop:
+    - nodejs
+    - mysql
 
   - name: adding user
     ansible.builtin.user:
@@ -39,3 +44,32 @@
     ansible.builtin.command: npm install
     args:
       chdir: /app
+
+  - name: copying backend service file to backend server
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+  - name: Install bottle python package
+    ansible.builtin.pip:
+      name: PyMySql
+      executable: pip3.9
+
+  - name: import data into mysql
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{ login_password }}"
+      login_host: "{{ login_host }}"
+      target: /app/schema/backend.sql
+      state: import
+      name: all
+
+  - name: daemon reload
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: start and enable backend service
+    ansible.builtin.service:
+      name: backend
+      state: started
+      enabled: yes
