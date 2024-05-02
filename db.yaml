@@ -21,7 +21,9 @@
   
   - name: Install bottle python package
     ansible.builtin.pip:
-      name: PyMySql
+      name: 
+      - PyMySql
+      - cryptography
       executable: pip3.9
 
   - name: connection for mysql DB
