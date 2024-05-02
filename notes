@@ -6,4 +6,8 @@ python based mysql --- pip - pymysql
 
 python based any module instalation in ansible = ansible.builtin.pip
 
+register: output #this command takes input from it's above query in ansible 
+
+ignore_errors: #handling the errors in ansible
+
 
