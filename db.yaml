@@ -2,7 +2,7 @@
   hosts: localhost
   become: yes
   vars: 
-    login_host: 54.221.111.181
+    login_host: 44.223.60.237
   vars_prompt:
     name: mysql_root_password
     prompt: please enter password
