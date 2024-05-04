@@ -2,7 +2,7 @@
   hosts: backend
   become: yes
   vars:
-    login_host: 44.223.60.237
+    login_host: 107.20.35.219
     login_password: Krish@1212
   
   tasks:
